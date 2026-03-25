@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Sonidos de Lluvia para Dormir Bebés</title>
+  <meta name="description" content="Música suave con sonidos relajantes de lluvia para dulces sueños. Abre directamente en Spotify." />
+  <meta name="theme-color" content="#26364d" />
+
+  <!-- Optional: replace with your real domain image URL -->
+  <meta property="og:title" content="Sonidos de Lluvia para Dormir Bebés" />
+  <meta property="og:description" content="Dulces sueños para ti y tus niños." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://music.somnialullabies.com/assets/lluvia-cover.webp" />
+
+  <style>
+    :root {
+      --bg-top: #53647b;
+      --bg-bottom: #2a3344;
+      --panel: rgba(18, 20, 28, 0.92);
+      --text: #f5f5f3;
+      --muted: #f1d3c7;
+      --spotify: #61c766;
+      --spotify-dark: #4fb357;
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --maxw: 420px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 50% 10%, rgba(255,255,255,0.10), transparent 35%),
+        linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 24px 14px 28px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: var(--maxw);
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: transparent;
+      position: relative;
+    }
+
+    .hero-wrap {
+      padding: 16px 16px 0;
+      background: transparent;
+    }
+
+    .hero {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #42536b;
+    }
+
+    .content {
+      position: relative;
+      background: linear-gradient(180deg, rgba(18,20,28,0.96), rgba(18,20,28,0.92));
+      padding: 24px 22px 20px;
+      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+    }
+
+    .content::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 26px;
+      background: linear-gradient(180deg, rgba(18,20,28,0), rgba(18,20,28,0.96));
+      pointer-events: none;
+    }
+
+    .message {
+      margin: 0 0 18px;
+      font-size: clamp(1.25rem, 4vw, 1.7rem);
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+
+    .cta-wrap {
+      position: relative;
+      margin: 0;
+      padding-top: 16px;
+    }
+
+    .cta-wrap::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 22px;
+      height: 22px;
+      background: var(--spotify);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      border-radius: 3px;
+    }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 70px;
+      border: 0;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      background: linear-gradient(180deg, var(--spotify), var(--spotify-dark));
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: clamp(1.05rem, 3.7vw, 1.35rem);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .cta:active {
+      transform: translateY(1px);
+    }
+
+    .small {
+      margin: 14px 4px 2px;
+      text-align: center;
+      font-size: 0.92rem;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .spotify-icon {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      display: inline-block;
+    }
+
+    .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.35);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .cta.loading .spinner {
+      display: inline-block;
+    }
+
+    .cta.loading .cta-label {
+      opacity: 0.92;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 390px) {
+      body { padding-left: 10px; padding-right: 10px; }
+      .content { padding-left: 18px; padding-right: 18px; }
+      .message { font-size: 1.18rem; }
+    }
+  </style>
+
+  <!-- Meta Pixel placeholder: replace PIXEL_ID before deploying -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2479107962486072');
+    fbq('track', 'PageView');
+    fbq('trackCustom', 'BridgePageView', {
+      playlist_name: 'Sonidos de Lluvia para Dormir Bebés',
+      page_variant: 'vercel-rain-v1'
+    });
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1" alt="" />
+  </noscript>
+</head>
+<body>
+  <main class="card">
+    <div class="hero-wrap">
+      <!-- Replace path with your compressed WebP asset -->
+      <img
+        class="hero"
+        src="/assets/lluvia-cover.webp"
+        width="1200"
+        height="1200"
+        fetchpriority="high"
+        decoding="async"
+        alt="Sonidos de Lluvia para Dormir Bebés"
+      />
+    </div>
+
+    <section class="content">
+      <h1 class="message">Dulces sueños para ti y tus niños 👇</h1>
+
+      <div class="cta-wrap">
+        <a
+          id="spotifyButton"
+          class="cta"
+          href="https://open.spotify.com/playlist/5p7ZM5RyKOluHs0hL1MHGS"
+          rel="nofollow noopener"
+          aria-describedby="open-note"
+        >
+          <span class="spinner" aria-hidden="true"></span>
+          <svg class="spotify-icon" viewBox="0 0 168 168" aria-hidden="true" focusable="false">
+            <circle cx="84" cy="84" r="84" fill="white"></circle>
+            <path d="M119.1 114.6c-1.5 2.4-4.6 3.1-7 1.7-19.3-11.8-43.7-14.5-72.5-8-2.7.6-5.4-1.1-6-3.8-.6-2.7 1.1-5.4 3.8-6 31.5-7.1 58.5-4 79.9 9.1 2.4 1.5 3.1 4.6 1.8 7zm10-22.3c-1.9 3-5.8 4-8.9 2.1-22.1-13.6-55.8-17.5-82-9.5-3.4 1-6.9-.9-8-4.3-1-3.4.9-6.9 4.3-8 29.9-9.1 67-4.7 92.4 10.9 3.1 1.9 4 5.8 2.2 8.8zm.9-23.2c-26.6-15.8-70.6-17.2-96-9.5-4.1 1.2-8.5-1.1-9.7-5.2-1.2-4.1 1.1-8.5 5.2-9.7 29.1-8.8 77.4-7.1 108.5 11.3 3.7 2.2 4.9 7 2.7 10.7-2.2 3.7-7 4.9-10.7 2.7z" fill="#1DB954"></path>
+          </svg>
+          <span class="cta-label">ESCUCHAR EN SPOTIFY</span>
+        </a>
+      </div>
+
+      <p id="open-note" class="small">Abre directamente en Spotify</p>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var spotifyUri = 'spotify:playlist:5p7ZM5RyKOluHs0hL1MHGS';
+      var spotifyWeb = 'https://open.spotify.com/playlist/5p7ZM5RyKOluHs0hL1MHGS';
+      var button = document.getElementById('spotifyButton');
+      var fallbackTimer = null;
+      var pageHidden = false;
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'hidden') {
+          pageHidden = true;
+          if (fallbackTimer) {
+            clearTimeout(fallbackTimer);
+          }
+        }
+      });
+
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        button.classList.add('loading');
+
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'SpotifyBridgeClick', {
+            playlist_name: 'Sonidos de Lluvia para Dormir Bebés',
+            destination_type: 'spotify_uri_then_web_fallback',
+            page_variant: 'vercel-rain-v1'
+          });
+        }
+
+        // Try app deep link first
+        window.location.href = spotifyUri;
+
+        // Fallback to web if app did not open
+        fallbackTimer = window.setTimeout(function () {
+          if (!pageHidden) {
+            window.location.href = spotifyWeb;
+          }
+        }, 900);
+      }, { passive: false });
+    })();
+  </script>
+</body>
+</html>
