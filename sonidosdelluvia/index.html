@@ -59,18 +59,17 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
 }
 
-/* Wrap for clickable image */
 .image-link {
   display: block;
   border-radius: 24px;
   overflow: hidden;
 }
 
-/* Fully rounded image */
 .image {
   width: 100%;
+  height: auto;
   display: block;
-  border-radius: 24px;
+  aspect-ratio: 1 / 1;
 }
 
 /* Slightly tighter spacing = more premium feel */
@@ -164,14 +163,23 @@
 </head>
 
 <body>
-  <div class="container">
-    <a
-  href="spotify:playlist:5p7ZM5RyKOluHs0hL1MHGS"
-  class="image-link"
-  onclick="fbq('trackCustom', 'ImageClick');"
->
-  <img src="/sonidosdelluvia/lluvia-cover.webp" alt="Sonidos de Lluvia para Dormir Bebés" class="image" />
-</a>
+ <div class="container">
+  <a
+    href="spotify:playlist:5p7ZM5RyKOluHs0hL1MHGS"
+    class="image-link"
+    onclick="if (typeof fbq === 'function') { fbq('trackCustom', 'ImageClick', { location: 'cover' }); }"
+  >
+    <img 
+      src="/sonidosdelluvia/lluvia-cover.webp"
+      alt="Sonidos de Lluvia para Dormir Bebés"
+      class="image"
+      width="420"
+      height="420"
+      loading="eager"
+      decoding="async"
+    />
+  </a>
+</div>
 
     <div class="content">
       <h1 class="title">Dulces sueños para ti y tu bebé 👇</h1>
