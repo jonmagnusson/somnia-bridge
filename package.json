@@ -1,0 +1,12 @@
+{
+  "name": "somnia-bridge",
+  "version": "1.0.0",
+  "description": "Static landing pages for Spotify playlists",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.3.1"
+  }
+}
