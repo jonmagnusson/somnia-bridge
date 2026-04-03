@@ -96,9 +96,10 @@
 
     .title {
       margin: 0 0 16px;
-      font-size: 17px;
+      font-size: 18px;
       line-height: 1.25;
       font-weight: 800;
+      white-space: nowrap;
     }
 
     .cta-wrap {
@@ -158,7 +159,7 @@
     }
 
     @media (max-width: 390px) {
-      .title { font-size: 17px; }
+      .title { font-size: 15px; }
       .cta {
         font-size: 15px;
         padding: 15px 16px;
@@ -214,14 +215,28 @@
   </main>
 
   <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+
+    function trackVercel(name, data) {
+      window.va('event', {
+        name: name,
+        data: data || {}
+      });
+    }
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <script>
     const btn = document.getElementById('spotifyButton');
     const imageLink = document.getElementById('imageLink');
+    const slug = 'criacaoconsciente';
 
     if (imageLink) {
       imageLink.addEventListener('click', function () {
         if (typeof fbq === 'function') {
           fbq('trackCustom', 'ImageClick');
         }
+        trackVercel('ImageClick', { slug: slug });
       });
     }
 
@@ -233,6 +248,9 @@
           fbq('track', 'ViewContent');
           fbq('trackCustom', 'SpotifyClick');
         }
+
+        trackVercel('ViewContent', { slug: slug });
+        trackVercel('SpotifyClick', { slug: slug });
 
         setTimeout(function () {
           btn.classList.remove('loading');
