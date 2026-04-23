@@ -167,20 +167,21 @@
 <body>
   <div class="container">
     <a
-  href="spotify:playlist:5p7ZM5RyKOluHs0hL1MHGS"
-  class="image-link"
-  onclick="fbq('trackCustom', 'ImageClick');"
->
-  <img
-  src="/sonidosdelluvia/lluvia-cover.webp"
-  alt="Sonidos de Lluvia para Dormir Bebés"
-  class="image"
-  width="1500"
-  height="1500"
-  fetchpriority="high"
-  decoding="async"
-/>
-</a>
+      id="imageLink"
+      href="spotify:playlist:5p7ZM5RyKOluHs0hL1MHGS"
+      class="image-link"
+      rel="nofollow noopener"
+    >
+      <img
+        src="/sonidosdelluvia/lluvia-cover.webp"
+        alt="Sonidos de Lluvia para Dormir Bebés"
+        class="image"
+        width="1500"
+        height="1500"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </a>
 
     <div class="content">
       <h1 class="title">Dulces sueños para ti y tu bebé 👇</h1>
@@ -191,7 +192,6 @@
           href="spotify:playlist:5p7ZM5RyKOluHs0hL1MHGS"
           class="cta"
           rel="nofollow noopener"
-          onclick="fbq('track', 'ViewContent'); fbq('trackCustom', 'SpotifyClick');"
         >
           <span class="spinner" aria-hidden="true"></span>
 
@@ -210,15 +210,50 @@
     </div>
   </div>
 
+  <!-- Vercel Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+
+    function trackVercel(name, data) {
+      window.va('event', {
+        name: name,
+        data: data || {}
+      });
+    }
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
   <script>
     const btn = document.getElementById('spotifyButton');
+    const imageLink = document.getElementById('imageLink');
+    const slug = 'sonidosdelluvia';
 
-    btn.addEventListener('click', function () {
-      btn.classList.add('loading');
-      setTimeout(function () {
-        btn.classList.remove('loading');
-      }, 1500);
-    });
+    if (imageLink) {
+      imageLink.addEventListener('click', function () {
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'ImageClick');
+        }
+        trackVercel('ImageClick', { slug: slug });
+      });
+    }
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        btn.classList.add('loading');
+
+        if (typeof fbq === 'function') {
+          fbq('track', 'ViewContent');
+          fbq('trackCustom', 'SpotifyClick');
+        }
+
+        trackVercel('ViewContent', { slug: slug });
+        trackVercel('SpotifyClick', { slug: slug });
+
+        setTimeout(function () {
+          btn.classList.remove('loading');
+        }, 1500);
+      });
+    }
   </script>
 </body>
 </html>
